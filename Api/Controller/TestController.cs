@@ -9,10 +9,4 @@ public class TestController : ControllerBase
     {
         return "Hello world!";
     }
-
-    [HttpGet("hello/{name}")]
-    public string GetGreetingByName(string name)
-    {
-        return $"Привет, {name}!";
-    }
 }
