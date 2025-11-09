@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Routing.Tree;
+
 public class ContactStorage
 {
     private List<Contact> Contacts { get; set; }
@@ -22,12 +24,20 @@ public class ContactStorage
         return Contacts;
     }
 
-    public void Add(Contact contact)
+    public bool Add(Contact contact)
     {
+        foreach (var item in Contacts)
+        {
+            if (contact.Id == item.Id)
+            {
+                return false;
+            }
+        }
         Contacts.Add(contact);
+        return true;
     }
 
-    public void Remove(int id)
+    public bool Remove(int id)
     {
         Contact contact;
         for (int i = 0; i < Contacts.Count; i++)
@@ -36,12 +46,13 @@ public class ContactStorage
             {
                 contact = Contacts[i];
                 Contacts.Remove(contact);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
-    public void UpdateContact(ContactDto contactDto, int id)
+    public bool UpdateContact(ContactDto contactDto, int id)
     {
         Contact contact;
         for (int i = 0; i < Contacts.Count; i++)
@@ -57,8 +68,9 @@ public class ContactStorage
                 {
                     contact.Name = contactDto.Name;
                 }
-                return;
+                return true;
             }
         }
+        return false;
     }
 }

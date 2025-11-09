@@ -10,27 +10,33 @@ public class ContactManagementController : BaseController
         this.storage = storage;
     }
     [HttpPost("contacts")]
-    public void Create([FromBody] Contact contact)
+    public IActionResult Create([FromBody] Contact contact)
     {
-        storage.Add(contact);
+        bool result = storage.Add(contact);
+        if (result) return Ok(contact);
+        return Conflict("Пользователь с таким id уже существует");
     }
 
     [HttpGet("contacts")]
-    public List<Contact> GetContacts()
+    public ActionResult<List<Contact>> GetContacts()
     {
-        return storage.GetContact();
+        return Ok(storage.GetContact());
     }
 
     [HttpDelete("contacts/{id}")]
-    public void DeleteContact(int id)
+    public IActionResult DeleteContact(int id)
     {
-        storage.Remove(id);
+        bool result = storage.Remove(id);
+        if (result) return NoContent();
+        return BadRequest("Пользователя не удалось удалить\n Проверьте корректность id");
     }
 
     [HttpPut("contacts/{id}")]
-    public void UpdateContact([FromBody] ContactDto contactDto, int id)
+    public IActionResult UpdateContact([FromBody] ContactDto contactDto, int id)
     {
-        storage.UpdateContact(contactDto, id);
+        bool result = storage.UpdateContact(contactDto, id);
+        if (result) return Ok();
+        return Conflict("Пользователь с таким id не нашелся");
     }
 
 }
