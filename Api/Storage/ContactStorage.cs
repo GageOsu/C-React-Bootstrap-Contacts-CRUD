@@ -24,6 +24,11 @@ public class ContactStorage
         return Contacts;
     }
 
+    public Contact GetContactById(int id)
+    {
+        return Contacts.FirstOrDefault(e => e.Id == id);
+    }
+
     public bool Add(Contact contact)
     {
         foreach (var item in Contacts)
