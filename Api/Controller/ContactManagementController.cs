@@ -14,4 +14,11 @@ public class ContactManagementController : BaseController
     {
         storage.Contacts.Add(contact);
     }
+
+    [HttpGet("contacts")]
+    public List<Contact> GetContacts()
+    {
+        return storage.Contacts;
+    }
+
 }
