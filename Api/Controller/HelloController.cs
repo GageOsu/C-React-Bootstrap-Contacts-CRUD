@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("api/[controller]")]
-public class HelloController : ControllerBase
+public class HelloController : BaseController
 {
     [HttpGet("hello/{name}")]
     public string GetGreetingByName(string name)
