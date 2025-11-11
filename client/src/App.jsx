@@ -10,8 +10,7 @@ const App = () => {
       { id: 2, name: "Pipa Popa", email: "example@zxc.com", },
       { id: 3, name: "Алексей Шевцовzxc", email: "карлик@10см.com", },
     ]
-
-  )
+  );
   const addContact = (contactName, contactEmail) => {
     const newId = contacts
       .sort((x, y) => x.Id - y.id)[contacts.length - 1]
@@ -23,8 +22,12 @@ const App = () => {
       email: contactEmail,
     };
     setContacts([...contacts, item]);
-    console.log(contacts);
   }
+
+  const deleteContact = (id) => {
+    setContacts(contacts.filter(item => item.id !== id));
+  }
+
   return (
     <div className="container mt-5">
       <div className="card">
@@ -33,7 +36,10 @@ const App = () => {
         </div>
 
         <div className="card-body">
-          <TableContact contacts={contacts} />
+          <TableContact
+            contacts={contacts}
+            deleteContact={deleteContact}
+          />
           <FormContact addContact={addContact} />
         </div>
       </div>
