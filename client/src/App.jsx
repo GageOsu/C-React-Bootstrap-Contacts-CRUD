@@ -1,23 +1,23 @@
 import axios from 'axios';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 import FormContact from './layout/FormContact/FormContact'
 
 const baseApiUrl = import.meta.env.VITE_API_URL;
 console.log(baseApiUrl);
+
+
 const App = () => {
+
+  const [contacts, setContacts] = useState([]);
+
   const url = `${baseApiUrl}/contacts`;
-  console.log(url);
-  axios.get(url).then(
-    res => console.log(res.data)
-  )
-  const [contacts, setContacts] = useState(
-    [
-      { id: 1, name: "Popa Pipa", email: "example@zxc.com", },
-      { id: 2, name: "Pipa Popa", email: "example@zxc.com", },
-      { id: 3, name: "Алексей Шевцовzxc", email: "карлик@10см.com", },
-    ]
-  );
+  useEffect(() => {
+    axios.get(url).then(
+      res => setContacts(res.data)
+    );
+  }, []);
+
   const addContact = (contactName, contactEmail) => {
     const newId = contacts.length === 0 ? 1 : contacts
       .sort((x, y) => x.Id - y.id)[contacts.length - 1]
