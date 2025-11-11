@@ -1,22 +1,25 @@
 import { useState } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 
-const contacts = [
-  { id: 1, name: "Popa Pipa", email: "example@zxc.com", },
-  { id: 2, name: "Pipa Popa", email: "example@zxc.com", },
-  { id: 3, name: "Алексей Шевцовzxc", email: "карлик@10см.com", },
-]
-const addContact = () => {
-  const item = {
-    id: Math.floor(Math.random() * 10),
-    name: "Алексей Шевцовzxc",
-    email: "карлик@10см.com",
-  };
-  contacts.push(item);
-  console.log(contacts);
-}
-
 const App = () => {
+
+  const [contacts, setContacts] = useState(
+    [
+      { id: 1, name: "Popa Pipa", email: "example@zxc.com", },
+      { id: 2, name: "Pipa Popa", email: "example@zxc.com", },
+      { id: 3, name: "Алексей Шевцовzxc", email: "карлик@10см.com", },
+    ]
+
+  )
+  const addContact = () => {
+    const item = {
+      id: Math.floor(Math.random() * 10),
+      name: "Алексей Шевцовzxc",
+      email: "карлик@10см.com",
+    };
+    setContacts([...contacts, item]);
+    console.log(contacts);
+  }
   return (
     <div className="container mt-5">
       <div className="card">
