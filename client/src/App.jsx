@@ -12,8 +12,12 @@ const App = () => {
 
   )
   const addContact = () => {
+    const newId = contacts
+      .sort((x, y) => x.Id - y.id)[contacts.length - 1]
+      .id + 1
+      ;
     const item = {
-      id: Math.floor(Math.random() * 10),
+      id: newId,
       name: "Алексей Шевцовzxc",
       email: "карлик@10см.com",
     };
