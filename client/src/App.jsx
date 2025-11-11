@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 
+const contacts = [
+  { id: 1, name: "Popa Pipa", email: "example@zxc.com", },
+  { id: 2, name: "Pipa Popa", email: "example@zxc.com", },
+  { id: 3, name: "Алексей Шевцовzxc", email: "карлик@10см.com", },
+]
+
 const App = () => {
   return (
     <div className="container mt-5">
@@ -10,7 +16,7 @@ const App = () => {
         </div>
 
         <div className="card-body">
-          <TableContact />
+          <TableContact contacts={contacts} />
         </div>
       </div>
     </div>
