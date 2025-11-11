@@ -3,8 +3,11 @@ import { useState } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 import FormContact from './layout/FormContact/FormContact'
 
+const baseApiUrl = import.meta.env.VITE_API_URL;
+console.log(baseApiUrl);
 const App = () => {
-  const url = "http://localhost:5000/api/ContactManagement/contacts";
+  const url = `${baseApiUrl}/contacts`;
+  console.log(url);
   axios.get(url).then(
     res => console.log(res.data)
   )
