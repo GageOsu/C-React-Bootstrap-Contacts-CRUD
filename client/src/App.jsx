@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TableContact from './layout/TableContact/TableContact'
+import FormContact from './layout/FormContact/FormContact'
 
 const App = () => {
 
@@ -33,14 +34,7 @@ const App = () => {
 
         <div className="card-body">
           <TableContact contacts={contacts} />
-          <div>
-            <button
-              className="btn btn-primary"
-              onClick={() => { addContact() }}
-            >
-              Добавить контакт
-            </button>
-          </div>
+          <FormContact addContact={addContact} />
         </div>
       </div>
     </div>
