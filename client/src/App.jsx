@@ -12,7 +12,7 @@ const App = () => {
     ]
   );
   const addContact = (contactName, contactEmail) => {
-    const newId = contacts
+    const newId = contacts.length === 0 ? 1 : contacts
       .sort((x, y) => x.Id - y.id)[contacts.length - 1]
       .id + 1
       ;
