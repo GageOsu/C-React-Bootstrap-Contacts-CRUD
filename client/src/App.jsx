@@ -12,15 +12,15 @@ const App = () => {
     ]
 
   )
-  const addContact = () => {
+  const addContact = (contactName, contactEmail) => {
     const newId = contacts
       .sort((x, y) => x.Id - y.id)[contacts.length - 1]
       .id + 1
       ;
     const item = {
       id: newId,
-      name: "Алексей Шевцовzxc",
-      email: "карлик@10см.com",
+      name: contactName,
+      email: contactEmail,
     };
     setContacts([...contacts, item]);
     console.log(contacts);
