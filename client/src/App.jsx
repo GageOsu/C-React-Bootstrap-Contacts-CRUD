@@ -32,9 +32,10 @@ const App = () => {
     axios.post(url, item);
     setContacts([...contacts, item]);
   }
-
   const deleteContact = (id) => {
-    setContacts(contacts.filter(item => item.id !== id));
+    setContacts(contacts.filter(item => item.id !== id))
+    const urldelete = `${baseApiUrl}/contacts/${id}`;
+    axios.delete(urldelete);
   }
 
   return (
