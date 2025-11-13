@@ -65,6 +65,18 @@ public class SqliteStorage : IStorage
 
     public bool UpdateContact(ContactDto contactDto, int id)
     {
-        throw new NotImplementedException();
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+
+        string sql = "UPDATE contacts SET name = @name, email = @email WHERE id = @id;";
+        command.CommandText = sql;
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@name", contactDto.Name);
+        command.Parameters.AddWithValue("@email", contactDto.Email);
+
+        Console.WriteLine("sql >> " + sql);
+        return command.ExecuteNonQuery() > 0;
     }
 }
