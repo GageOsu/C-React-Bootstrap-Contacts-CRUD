@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IStorage, InMemoryStorage>();
+builder.Services.AddSingleton<IStorage, SqliteStorage>();
 
 builder.Services.AddCors(opt =>
 opt.AddPolicy("CorsPolicy", policy =>
