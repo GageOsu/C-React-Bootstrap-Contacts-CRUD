@@ -3,14 +3,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IStorage, SqliteStorage>();
+var stringConnection = builder.Configuration.GetConnectionString("SqliteStringConnection");
+builder.Services.AddSingleton<IStorage>(new SqliteStorage(stringConnection));
 
 builder.Services.AddCors(opt =>
 opt.AddPolicy("CorsPolicy", policy =>
 {
     policy.AllowAnyMethod()
     .AllowAnyHeader()
-    .WithOrigins(args[0]);
+    .WithOrigins(builder.Configuration["client"]);
 }));
 
 var app = builder.Build();
