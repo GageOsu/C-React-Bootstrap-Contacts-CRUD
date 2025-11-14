@@ -9,11 +9,12 @@ public class ContactManagementController : BaseController
     {
         this.storage = storage;
     }
+
     [HttpPost("contacts")]
     public IActionResult Create([FromBody] Contact contact)
     {
-        bool result = storage.Add(contact);
-        if (result) return Created();
+        Contact result = storage.Add(contact);
+        if (result != null) return Ok(contact);
         return Conflict("Пользователь с таким id уже существует");
     }
 

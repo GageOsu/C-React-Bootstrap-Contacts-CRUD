@@ -19,19 +19,14 @@ const App = () => {
   }, []);
 
   const addContact = (contactName, contactEmail) => {
-    const newId = contacts.length === 0 ? 1 : contacts
-      .sort((x, y) => x.Id - y.id)[contacts.length - 1]
-      .id + 1
-      ;
     const item = {
-      id: newId,
       name: contactName,
       email: contactEmail,
     };
     const url = `${baseApiUrl}/contacts`;
-    axios.post(url, item);
-    setContacts([...contacts, item]);
-  }
+    axios.post(url, item).then(
+      response => setContacts([...contacts, response.data]))
+  };
   const deleteContact = (id) => {
     setContacts(contacts.filter(item => item.id !== id))
     const urldelete = `${baseApiUrl}/contacts/${id}`;
