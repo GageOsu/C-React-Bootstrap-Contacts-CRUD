@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 import FormContact from './layout/FormContact/FormContact'
 import { Route, Routes } from 'react-router-dom';
+import ContactDetails from './layout/ContactDetails/ContactDetails';
 
 const baseApiUrl = import.meta.env.VITE_API_URL;
 console.log(baseApiUrl);
@@ -52,7 +53,7 @@ const App = () => {
             </div>
           </div>
         } />
-        <Route path="contact/:id" element={<>Hello</>} />
+        <Route path="contact/:id" element={<ContactDetails />} />
       </Routes>
     </div>
   )
