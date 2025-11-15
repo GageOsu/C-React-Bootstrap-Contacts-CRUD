@@ -19,19 +19,24 @@ const ContactDetails = () => {
         )
     }, [id, navigate]);
 
-
-    {/* const deleteContact = (id) => {
-    setContacts(contacts.filter(item => item.id !== id))
-    const urldelete = `${baseApiUrl}/contacts/${id}`;
-    axios.delete(urldelete);
-  } */}
     const handleRemove = () => {
         const url = `${baseApiUrl}/contacts/${id}`;
         if (window.confirm("Вы уверены что хотите удалить контакт?")) {
             axios.delete(url).then(
                 navigate("/")
             ).catch(
-                console.log("Ошибка")
+                console.log("Ошибка удаления")
+            );
+        }
+    }
+
+    const handleUpdate = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
+        if (window.confirm("Вы уверены что хотите обновить контакт?")) {
+            axios.put(url, contact).then(
+                navigate("/")
+            ).catch(
+                console.log("Ошибка обновления")
             );
         }
     }
@@ -47,7 +52,7 @@ const ContactDetails = () => {
                     className="form-control"
                     type="text"
                     value={contact.name}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContacts({ ...contact, name: e.target.value }); }}
                 />
             </div>
             <div className="mb-3">
@@ -56,10 +61,10 @@ const ContactDetails = () => {
                     className="form-control"
                     type="email"
                     value={contact.email}
-                    onChange={(e) => { }}
+                    onChange={(e) => { setContacts({ ...contact, email: e.target.value }); }}
                 />
             </div>
-            <button className="btn btn-primary me-2" onClick={(e) => { }}>
+            <button className="btn btn-primary me-2" onClick={(e) => { handleUpdate(); }}>
                 Обновит
             </button>
 
