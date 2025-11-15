@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 public static class ApplicationServiceCollectionExtension
@@ -15,15 +16,20 @@ public static class ApplicationServiceCollectionExtension
             });
         });
         services.AddControllers();
+
+
         var stringConnection = configuration.GetConnectionString("SqliteStringConnection");
-        services.AddSingleton<IStorage>(new SqliteStorage(stringConnection));
+        services.AddDbContext<SqliteDbContext>(opt => opt.UseSqlite(stringConnection));
+
+
+        services.AddScoped<IStorage, SqliteEfStorage>();
 
         services.AddCors(opt =>
         opt.AddPolicy("CorsPolicy", policy =>
         {
             policy.AllowAnyMethod()
-            .AllowAnyHeader()
-            .WithOrigins(configuration["client"]);
+                        .AllowAnyHeader()
+                        .WithOrigins(configuration["client"]);
         }));
         return services;
     }

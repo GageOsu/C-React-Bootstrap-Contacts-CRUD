@@ -21,7 +21,7 @@ public class ContactManagementController : BaseController
     [HttpGet("contacts")]
     public ActionResult<List<Contact>> GetContacts()
     {
-        return Ok(storage.GetContact());
+        return Ok(storage.GetContacts());
     }
     // [HttpGet("contacts/{id}")]
     // public ActionResult<Contact> GetContactById(int id)

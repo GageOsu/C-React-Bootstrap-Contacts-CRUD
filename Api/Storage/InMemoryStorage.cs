@@ -19,7 +19,7 @@ public class InMemoryStorage : IStorage
     }
 
 
-    public List<Contact> GetContact()
+    public List<Contact> GetContacts()
     {
         return Contacts;
     }

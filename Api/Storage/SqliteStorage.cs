@@ -29,7 +29,7 @@ public class SqliteStorage : IStorage
 
     }
 
-    public List<Contact> GetContact()
+    public List<Contact> GetContacts()
     {
         var contact = new List<Contact>();
 
