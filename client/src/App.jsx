@@ -6,7 +6,6 @@ import { Route, Routes } from 'react-router-dom';
 import ContactDetails from './layout/ContactDetails/ContactDetails';
 
 const baseApiUrl = import.meta.env.VITE_API_URL;
-console.log(baseApiUrl);
 
 
 const App = () => {
