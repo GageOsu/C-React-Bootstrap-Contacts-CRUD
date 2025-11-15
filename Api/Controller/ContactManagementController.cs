@@ -23,17 +23,16 @@ public class ContactManagementController : BaseController
     {
         return Ok(storage.GetContacts());
     }
-    // [HttpGet("contacts/{id}")]
-    // public ActionResult<Contact> GetContactById(int id)
-    // {
-    //     if (id <= 0)
-    //         return BadRequest("Не правильно введен id");
-    //     var result = storage.GetContactById(id);
-    //     if (result is null)
-    //         return NotFound("id не найден");
-    //     return Ok(result);
 
-    // }
+
+    [HttpGet("contacts/{id}")]
+    public ActionResult<Contact> GetContacts(int id)
+    {
+        var contact = storage.GetContactById(id);
+        if (contact != null) return Ok(contact);
+
+        return NotFound();
+    }
 
     [HttpDelete("contacts/{id}")]
     public IActionResult DeleteContact(int id)
