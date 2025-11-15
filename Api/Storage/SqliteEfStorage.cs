@@ -2,7 +2,7 @@ using Bogus.Extensions.UnitedKingdom;
 
 public class SqliteEfStorage : IStorage
 {
-    private readonly SqliteDbContext context;
+    protected readonly SqliteDbContext context;
 
     public SqliteEfStorage(SqliteDbContext context)
     {
