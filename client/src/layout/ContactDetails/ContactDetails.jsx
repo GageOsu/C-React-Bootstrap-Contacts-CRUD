@@ -19,6 +19,25 @@ const ContactDetails = () => {
         )
     }, [id, navigate]);
 
+
+    {/* const deleteContact = (id) => {
+    setContacts(contacts.filter(item => item.id !== id))
+    const urldelete = `${baseApiUrl}/contacts/${id}`;
+    axios.delete(urldelete);
+  } */}
+    const handleRemove = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
+        if (window.confirm("Вы уверены что хотите удалить контакт?")) {
+            axios.delete(url).then(
+                navigate("/")
+            ).catch(
+                console.log("Ошибка")
+            );
+        }
+    }
+
+
+
     return (
         <div className="container">
             <h2>Детали контакта</h2>
@@ -43,10 +62,12 @@ const ContactDetails = () => {
             <button className="btn btn-primary me-2" onClick={(e) => { }}>
                 Обновит
             </button>
-            <button className="btn btn-danger me-2" onClick={(e) => { }}>
+
+
+            <button className="btn btn-danger me-2" onClick={(e) => { handleRemove(); }}>
                 Удалить
             </button>
-            <button className="btn btn-secondary ms-2" onClick={(e) => { }}>
+            <button className="btn btn-secondary ms-2" onClick={(e) => { navigate("/"); }}>
                 Назад
             </button>
         </div>);
