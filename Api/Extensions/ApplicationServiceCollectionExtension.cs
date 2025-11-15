@@ -23,6 +23,7 @@ public static class ApplicationServiceCollectionExtension
 
 
         services.AddScoped<IStorage, SqliteEfStorage>();
+        services.AddScoped<IInitializer, SqliteEfFakerInitializer>();
 
         services.AddCors(opt =>
         opt.AddPolicy("CorsPolicy", policy =>

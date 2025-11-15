@@ -13,7 +13,7 @@ public class InMemoryStorage : IStorage
             {
                 Id = i + 1,
                 Name = $"Полное имя {i + 1}",
-                Email = $"example{i + 1}@testmail.com",
+                Email = $"example{i + 1}@testEmail.com",
             });
         }
     }
