@@ -28,11 +28,6 @@ const App = () => {
     axios.post(url, item).then(
       response => setContacts([...contacts, response.data]))
   };
-  const deleteContact = (id) => {
-    setContacts(contacts.filter(item => item.id !== id))
-    const urldelete = `${baseApiUrl}/contacts/${id}`;
-    axios.delete(urldelete);
-  }
 
   return (
     <div className="container mt-5">
@@ -46,7 +41,6 @@ const App = () => {
             <div className="card-body">
               <TableContact
                 contacts={contacts}
-                deleteContact={deleteContact}
               />
               <FormContact addContact={addContact} />
             </div>
