@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react'
 import TableContact from './layout/TableContact/TableContact'
 import FormContact from './layout/FormContact/FormContact'
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import ContactDetails from './layout/ContactDetails/ContactDetails';
 
 const baseApiUrl = import.meta.env.VITE_API_URL;
@@ -11,13 +11,15 @@ const baseApiUrl = import.meta.env.VITE_API_URL;
 const App = () => {
 
   const [contacts, setContacts] = useState([]);
+  const location = useLocation();
 
-  const url = `${baseApiUrl}/contacts`;
+
   useEffect(() => {
+    const url = `${baseApiUrl}/contacts`;
     axios.get(url).then(
       res => setContacts(res.data)
     );
-  }, []);
+  }, [location.pathname]);
 
   const addContact = (contactName, contactEmail) => {
     const item = {
