@@ -37,9 +37,16 @@ const App = () => {
       name: contactName,
       email: contactEmail,
     };
-    const url = `${baseApiUrl}/contacts`;
-    axios.post(url, item).then(
-      response => setContacts([...contacts, response.data]))
+
+    let url = `${baseApiUrl}/contacts`;
+    axios.post(url, item);
+    url = `${baseApiUrl}/contacts/page?pageNumber=${currentPage}&pageSize=${pageSize}`;
+    axios.get(url).then(
+      res => {
+        setContacts(res.data.contacts);
+        setTotalPages(Math.ceil(res.data.totalCount / pageSize))
+      }
+    );
   };
 
   return (
@@ -58,7 +65,7 @@ const App = () => {
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-              //onPageChange={handlePageChange}
+                onPageChange={handlePageChange}
               />
               <FormContact addContact={addContact} />
             </div>
