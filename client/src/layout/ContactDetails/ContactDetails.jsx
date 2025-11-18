@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 const baseApiUrl = import.meta.env.VITE_API_URL;
 
-const ContactDetails = () => {
+const ContactDetails = (props) => {
     const [contact, setContacts] = useState({ name: "", email: "" });
     const { id } = useParams();
     const navigate = useNavigate();
@@ -22,8 +22,10 @@ const ContactDetails = () => {
     const handleRemove = () => {
         const url = `${baseApiUrl}/contacts/${id}`;
         if (window.confirm("Вы уверены что хотите удалить контакт?")) {
-            axios.delete(url).then(
+            axios.delete(url).then(() => {
+                props.onUpdate();
                 navigate("/")
+            }
             ).catch(
                 console.log("Ошибка удаления")
             );
@@ -32,16 +34,14 @@ const ContactDetails = () => {
 
     const handleUpdate = () => {
         const url = `${baseApiUrl}/contacts/${id}`;
-        if (window.confirm("Вы уверены что хотите обновить контакт?")) {
-            axios.put(url, contact).then(
-                navigate("/")
-            ).catch(
-                console.log("Ошибка обновления")
-            );
+        axios.put(url, contact).then(() => {
+            props.onUpdate();
+            navigate("/")
         }
+        ).catch(
+            console.log("Ошибка обновления")
+        );
     }
-
-
 
     return (
         <div className="container">
