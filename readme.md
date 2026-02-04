@@ -73,4 +73,6 @@ public class Contact
 # Окно обновление/удаление пользователя
 <img width="1360" height="626" alt="изображение" src="https://github.com/user-attachments/assets/3d893c07-55ea-45a9-8552-c6c600290693" />
 
+# Swagger
+<img width="1343" height="629" alt="изображение" src="https://github.com/user-attachments/assets/26a91e2e-9714-4f1e-bfcc-33b85d8b8100" />
 
