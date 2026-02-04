@@ -63,3 +63,14 @@ public class Contact
 }
 
 ````
+
+# Пример
+
+## Главное окно
+<img width="1359" height="628" alt="изображение" src="https://github.com/user-attachments/assets/95e93d5e-3a0d-41c7-bdd7-bff7bac242ae" />
+<img width="1363" height="626" alt="изображение" src="https://github.com/user-attachments/assets/8aa6cb66-7567-45d3-857c-3726036b7689" />
+
+# Окно обновление/удаление пользователя
+<img width="1360" height="626" alt="изображение" src="https://github.com/user-attachments/assets/3d893c07-55ea-45a9-8552-c6c600290693" />
+
+
